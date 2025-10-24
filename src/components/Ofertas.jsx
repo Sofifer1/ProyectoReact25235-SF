@@ -5,7 +5,7 @@ const Ofertas = () => {
     return (
         <div>
             <h1>OFERTAS ESPECIALES</h1>
-            <ProductList category="Remeras" />
+            <ProductList category="electronics" />
         </div>
     );
 };

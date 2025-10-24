@@ -8,3 +8,4 @@ npm intall react-router-dom
 npm install @fortawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome
 npm install @fortawesome/free-brands-svg-icons
 https://fakestoreapi.com/products
+npm install @fortawesome/free-brands-svg-icons
