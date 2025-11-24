@@ -1,38 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Row, Col } from "react-bootstrap";
 import ProductCard from "./ProductCard.jsx";
 import { CartContext } from './CartContext';
 
-
 const ProductList = ({ category = null }) => {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [filteredProducts, setFilteredProducts] = useState([]);
-    const [minPrice, setMinPrice] = useState('');
-    const [maxPrice, setMaxPrice] = useState('');
-    const { agregarAlCarrito } = useContext(CartContext);
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [minPrice, setMinPrice] = useState('');
+  const [maxPrice, setMaxPrice] = useState('');
+  const { agregarAlCarrito } = useContext(CartContext);
+ 
+  useEffect(() => {
+    let url = 'https://68489b9bec44b9f349416b0e.mockapi.io/api/productos';
+    if (category) {
+      url = `https://fakestoreapi.com/products/category/${category}`;
+    }
 
 
-    //efectos secundarios con la rederizacion del proyecto
-    useEffect(() => {
-        let url = 'https://68489b9bec44b9f349416b0e.mockapi.io/api/productos';
-        if (category) {
-            url = `https://fakestoreapi.com/products/category/${category}`;
-        }
-        // Fetch products based on category
-        fetch(url)
-            .then(res => res.json())
-            .then(data => {
-                setProducts(data);
-                setFilteredProducts(data);
-                setLoading(false);
-            })
-            .catch(err => {
-                console.error("Error fetching products:", err);
-                setLoading(false);
-            });
-    }, [category]);
-//filtro de precios
+
+  fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setProducts(data);
+        setFilteredProducts(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      });
+  }, [category]);
+
  const handleFilter = () => {
     let filtered = products;
 
@@ -46,7 +45,8 @@ const ProductList = ({ category = null }) => {
 
     setFilteredProducts(filtered);
   };
-    // Botón para limpiar filtros
+
+  // Botón para limpiar filtros
   const handleClear = () => {
     setMinPrice('');
     setMaxPrice('');
@@ -54,21 +54,12 @@ const ProductList = ({ category = null }) => {
   };
 
   if (loading) {
-    return <div>Cargando...</div>;
+    return <div>Loading...</div>;
   }
-   
+
+ return (
+    <>
     
-/* const handleAgregarAlCarrito = (product) => {
-        console.log("Producto agregado al carrito:", product);
-    };
-
-    if (loading) {
-        return <p>Cargando productos...</p>;
-    }*/
-
-    return (
-            <>
-
       <Form className="mb-4">
         <Row className="align-items-end">
           <Col md={3}>
@@ -121,14 +112,5 @@ const ProductList = ({ category = null }) => {
     </>
   );
 };
-        /*
-        <Row>
-            {products.map(product => (
-                <Col key={product.id} className="mb-4">
-                    <ProductCard product={product} onAgregarAlCarrito={handleAgregarAlCarrito} />
-                </Col>
-            ))}
-        </Row>*/
-
 
 export default ProductList;
