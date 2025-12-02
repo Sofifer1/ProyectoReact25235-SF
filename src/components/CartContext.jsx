@@ -8,7 +8,8 @@ export const CartProvider = ({ children }) => {
   const [carrito, setCarrito] = useState([]);
 
   // Agregar producto al carrito
-  const agregarAlCarrito = (producto) => {
+  const onAgregarAlCarrito = (producto) => {
+    console.log('Agregando al carrito:', producto);
     setCarrito((prevCarrito) => {
       const existe = prevCarrito.find(item => item.id === producto.id);
       if (existe) {
@@ -37,7 +38,7 @@ export const CartProvider = ({ children }) => {
       value={{
         carrito,
         setCarrito,
-        agregarAlCarrito,
+        onAgregarAlCarrito,
         eliminarDelCarrito,
         vaciarCarrito
       }}

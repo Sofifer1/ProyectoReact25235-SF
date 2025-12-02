@@ -6,7 +6,9 @@ const ProductCard = ({product, onAgregarAlCarrito}) => {
         <Card>
             <Card.Img variant="top" 
             src={product.image} 
-            alt={product.title} />
+            alt={product.title} 
+            style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+            />  
             <Card.Body className="d-flex flex-column">      
                 <Card.Title>{product.title}</Card.Title>
                 <Card.Text>{product.description.slice(0, 100)}...</Card.Text>

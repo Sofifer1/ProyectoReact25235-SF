@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Form, Button } from "react-bootstrap";
 import ProductCard from "./ProductCard.jsx";
 import { CartContext } from './CartContext';
 
@@ -9,10 +9,10 @@ const ProductList = ({ category = null }) => {
   const [loading, setLoading] = useState(true);
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
-  const { agregarAlCarrito } = useContext(CartContext);
+  const { onAgregarAlCarrito } = useContext(CartContext);
  
   useEffect(() => {
-    let url = 'https://68489b9bec44b9f349416b0e.mockapi.io/api/productos';
+    let url = 'https://692f040d91e00bafccd641d5.mockapi.io/api/products/Products';
     if (category) {
       url = `https://fakestoreapi.com/products/category/${category}`;
     }
@@ -54,7 +54,7 @@ const ProductList = ({ category = null }) => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Esperando...</div>;
   }
 
  return (
@@ -101,7 +101,7 @@ const ProductList = ({ category = null }) => {
             <Col md={4} key={product.id} className="mb-4">
               <ProductCard
                 product={product}
-                agregarAlCarrito={agregarAlCarrito}
+                onAgregarAlCarrito={onAgregarAlCarrito}
               />
             </Col>
           ))
