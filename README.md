@@ -69,7 +69,7 @@ Datos gestionados vía API REST simulada.
 - **React Router DOM**
 - **Context API / Hooks**
 - **MockAPI**
-- **CSS / Tailwind / Bootstrap** (ajusta según uses)
+- **CSS / Bootstrap** 
 - **Vercel**
 
 ---
