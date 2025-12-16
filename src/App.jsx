@@ -1,22 +1,20 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
+import { Header } from './components/Header';
 import Home from './components/Home';
 import Ofertas from './components/Ofertas';
 import Destacados from './components/Destacados';
-import Login from './components/Login'; 
+import Login from './components/Login';
 import Footer from './components/Footer'
-import { CartProvider } from './components/CartContext';
-import Carrito from './components/Carrito'; 
+import Carrito from './components/Carrito';
 import CrudProductos from './components/CrudProductos';
-
+ 
 function App() {
-
+ 
   return (
-      <CartProvider>
-     <Router>
+    <Router>
       <Header />
       <Routes>
-        <Route path="/administracion" element={<Login />} />
+        <Route path="/Login" element={<Login />} />
         <Route path="/" element={<Home />} />
         <Route path="/ofertas" element={<Ofertas />} />
         <Route path="/Destacados" element={<Destacados />} />
@@ -25,8 +23,9 @@ function App() {
       </Routes>
       <Footer/>
     </Router>
-    </CartProvider>
   )
 }
-
+ 
 export default App
+ 
+ 

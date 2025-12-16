@@ -1,16 +1,12 @@
 import React, { useContext } from 'react';
 import { Container, Table, Button } from 'react-bootstrap';
 import { CartContext } from './CartContext';
-
+ 
 const Carrito = () => {
-  const { carrito, setCarrito } = useContext(CartContext);
-
-  const eliminarDelCarrito = (id) => {
-    setCarrito(prev => prev.filter(producto => producto.id !== id));
-  };
-
+  const { carrito, eliminarDelCarrito } = useContext(CartContext);
+ 
   const total = carrito.reduce((acc, item) => acc + Number(item.price) * item.cantidad, 0);
-
+ 
   if (carrito.length === 0) {
     return (
       <Container className="mt-4">
@@ -18,7 +14,7 @@ const Carrito = () => {
       </Container>
     );
   }
-
+ 
   return (
     <Container className="mt-4">
       <h3>Carrito de compras</h3>
@@ -56,5 +52,5 @@ const Carrito = () => {
     </Container>
   );
 };
-
+ 
 export default Carrito;
